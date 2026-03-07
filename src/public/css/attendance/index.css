@@ -1,0 +1,100 @@
+.attendance {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 80px);
+  padding: 32px 16px;
+  background-color: #e5e5e5;
+}
+
+.attendance-container {
+  width: 100%;
+  max-width: 600px;
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 48px 32px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.attendance-message {
+  margin-bottom: 24px;
+  padding: 12px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.attendance-message--success {
+  background-color: #d4edda;
+  color: #155724;
+}
+.attendance-message--error {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+.attendance-status-badge {
+  display: inline-block;
+  padding: 8px 24px;
+  margin-bottom: 24px;
+  background-color: #e5e5e5;
+  border-radius: 20px;
+  font-size: 16px;
+  font-weight: 700;
+  color: #333;
+}
+
+.attendance-date {
+  color: #333;
+  font-size: 20px;
+  font-weight: 500;
+  margin: 0 0 16px 0;
+}
+
+.attendance-time {
+  font-size: 48px;
+  font-weight: 700;
+  color: #000;
+  margin: 0 0 48px 0;
+}
+
+.attendance-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+}
+
+.attendance-action-form {
+  width: 100%;
+  max-width: 300px;
+}
+
+.attendance-btn {
+  width: 100%;
+  padding: 16px 32px;
+  font-size: 20px;
+  font-weight: 700;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+.attendance-btn:hover {
+  opacity: 0.9;
+}
+.attendance-btn--primary {
+  background-color: #000;
+  color: #fff;
+}
+.attendance-btn--secondary {
+  background-color: #fff;
+  color: #000;
+  border: 2px solid #000;
+}
+
+.attendance-greeting {
+  font-size: 24px;
+  font-weight: 700;
+  color: #333;
+  margin: 0;
+}

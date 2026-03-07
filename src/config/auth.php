@@ -108,4 +108,18 @@ return [
 
     'password_timeout' => 10800,
 
+    /*
+    |--------------------------------------------------------------------------
+    | Email Verification
+    |--------------------------------------------------------------------------
+    |
+    | Here you may define the amount of minutes that each verification token
+    | will be considered valid.
+    |
+    */
+
+    'verification' => [
+        'expire' => 60,
+    ],
+
 ];

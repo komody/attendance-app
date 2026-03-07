@@ -1,0 +1,49 @@
+.header {
+  background-color: #fff;
+  border-bottom: 1px solid #e5e5e5;
+  padding: 16px 24px;
+}
+
+.header-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-title {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 700;
+}
+.header-title a {
+  color: #000;
+  text-decoration: none;
+}
+.header-title a:hover {
+  opacity: 0.8;
+}
+
+.header-nav-list {
+  display: flex;
+  gap: 24px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nav-attendance-link,
+.nav-login-link,
+.nav-register-link,
+.nav-logout-link {
+  color: #0073cc;
+  text-decoration: none;
+  font-size: 16px;
+}
+.nav-attendance-link:hover,
+.nav-login-link:hover,
+.nav-register-link:hover,
+.nav-logout-link:hover {
+  text-decoration: underline;
+}

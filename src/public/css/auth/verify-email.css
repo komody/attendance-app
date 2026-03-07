@@ -1,0 +1,68 @@
+.auth-verify-email {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  padding: 32px 16px;
+}
+
+.auth-verify-email-container {
+  width: 100%;
+  max-width: 720px;
+  margin-top: 240px;
+}
+
+.auth-verify-email-content {
+  margin-bottom: 50px;
+}
+
+.auth-verify-email-text {
+  font-size: 24px;
+  font-weight: 700;
+  color: #000;
+  line-height: 1.6;
+  margin: 0 0 16px 0;
+}
+.auth-verify-email-text:last-child {
+  margin-bottom: 0;
+}
+
+.auth-verify-email-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: center;
+}
+
+.auth-verify-email-button {
+  width: 100%;
+  max-width: 257px;
+  margin-bottom: 50px;
+  padding: 12px 24px;
+  background-color: #d9d9d9;
+  border: 1px solid #000;
+  color: #000;
+  border-radius: 10px;
+  font-size: 24px;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+.auth-verify-email-button:hover {
+  opacity: 0.9;
+}
+
+.auth-verify-email-resend-link {
+  color: #3b82f6;
+  text-decoration: none;
+  font-size: 20px;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-family: inherit;
+}
+.auth-verify-email-resend-link:hover {
+  text-decoration: underline;
+}
