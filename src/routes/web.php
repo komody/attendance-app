@@ -32,7 +32,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/attendance/clock-out', [App\Http\Controllers\AttendanceController::class, 'clockOut'])->name('attendance.clock-out');
     Route::post('/attendance/break-start', [App\Http\Controllers\AttendanceController::class, 'breakStart'])->name('attendance.break-start');
     Route::post('/attendance/break-end', [App\Http\Controllers\AttendanceController::class, 'breakEnd'])->name('attendance.break-end');
-    Route::get('/stamp-correction-requests', fn () => view('stamp_correction_request.list', ['headerType' => 'user']))->name('stamp_correction_request.list');
+    Route::get('/stamp-correction-requests', [App\Http\Controllers\StampCorrectionRequestController::class, 'index'])->name('stamp_correction_request.list');
 });
 
 // 管理者
