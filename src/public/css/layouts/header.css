@@ -1,6 +1,6 @@
 .header {
-  background-color: #fff;
-  border-bottom: 1px solid #e5e5e5;
+  background-color: #000;
+  border-bottom: 1px solid #333;
   padding: 16px 24px;
 }
 
@@ -14,15 +14,23 @@
 
 .header-title {
   margin: 0;
-  font-size: 24px;
-  font-weight: 700;
+  font-size: 0;
+  line-height: 0;
 }
-.header-title a {
-  color: #000;
+
+.header-logo-link {
+  display: inline-block;
   text-decoration: none;
 }
-.header-title a:hover {
-  opacity: 0.8;
+
+.header-logo-link:hover {
+  opacity: 0.9;
+}
+
+.header-logo-img {
+  height: 36px;
+  width: auto;
+  display: block;
 }
 
 .header-nav-list {
@@ -33,17 +41,12 @@
   list-style: none;
 }
 
-.nav-attendance-link,
-.nav-login-link,
-.nav-register-link,
-.nav-logout-link {
-  color: #0073cc;
+.header-nav-link {
+  color: #fff;
   text-decoration: none;
   font-size: 16px;
 }
-.nav-attendance-link:hover,
-.nav-login-link:hover,
-.nav-register-link:hover,
-.nav-logout-link:hover {
-  text-decoration: underline;
+
+.header-nav-link:hover {
+  opacity: 0.8;
 }

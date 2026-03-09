@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    @include('layouts.header', ['headerType' => 'login'])
+    @include('layouts.header', ['headerType' => 'user'])
 
     <main class="attendance">
         <div class="attendance-container">
