@@ -16,7 +16,7 @@ class CreateCorrectionBreaksTable extends Migration
         Schema::create('correction_breaks', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('correction_application_id');
-            $table->unsignedBigInteger('break_id');
+            $table->unsignedBigInteger('break_id')->nullable();
             $table->time('corrected_break_start');
             $table->time('corrected_break_end');
             $table->timestamps();

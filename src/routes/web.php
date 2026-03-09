@@ -23,10 +23,31 @@ Route::get('/', function () {
 // 勤怠（認証必須）
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/attendance', [App\Http\Controllers\AttendanceController::class, 'index'])->name('attendance.index');
+    Route::get('/attendance/list', fn () => redirect()->route('attendance.list', ['year' => now()->year, 'month' => now()->month]));
+    Route::get('/attendance/list/{year}/{month}', [App\Http\Controllers\AttendanceListController::class, 'index'])->name('attendance.list');
+    Route::get('/attendance/detail/{year}/{month}/{day}', [App\Http\Controllers\AttendanceDetailController::class, 'showByDate'])->name('attendance.detail.date');
+    Route::get('/attendance/{id}', [App\Http\Controllers\AttendanceDetailController::class, 'show'])->name('attendance.detail');
+    Route::post('/attendance/correction', [App\Http\Controllers\AttendanceDetailController::class, 'storeCorrection'])->name('attendance.correction.store');
     Route::post('/attendance/clock-in', [App\Http\Controllers\AttendanceController::class, 'clockIn'])->name('attendance.clock-in');
     Route::post('/attendance/clock-out', [App\Http\Controllers\AttendanceController::class, 'clockOut'])->name('attendance.clock-out');
     Route::post('/attendance/break-start', [App\Http\Controllers\AttendanceController::class, 'breakStart'])->name('attendance.break-start');
     Route::post('/attendance/break-end', [App\Http\Controllers\AttendanceController::class, 'breakEnd'])->name('attendance.break-end');
+    Route::get('/stamp-correction-requests', fn () => view('stamp_correction_request.list', ['headerType' => 'user']))->name('stamp_correction_request.list');
+});
+
+// 管理者
+Route::get('/admin/login', fn () => view('admin.login'))->name('admin.login');
+
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::get('/attendance/list', fn () => view('admin.attendance.list', ['headerType' => 'admin']))->name('attendance.list');
+    Route::get('/staff/list', fn () => view('admin.staff.list', ['headerType' => 'admin']))->name('staff.list');
+    Route::get('/stamp-correction-requests', fn () => view('stamp_correction_request.list', ['headerType' => 'admin']))->name('stamp_correction_request.list');
+    Route::post('/logout', function (Request $request) {
+        // 管理者ログアウト処理（管理者認証実装時に更新）
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect()->route('admin.login');
+    })->name('logout');
 });
 
 // ログアウト
