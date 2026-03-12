@@ -35,19 +35,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/stamp-correction-requests', [App\Http\Controllers\StampCorrectionRequestController::class, 'index'])->name('stamp_correction_request.list');
 });
 
-// 管理者
-Route::get('/admin/login', fn () => view('admin.login'))->name('admin.login');
-
+// 管理者（/admin/login, /admin/logout は Fortify が担当）
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/attendance/list', fn () => view('admin.attendance.list', ['headerType' => 'admin']))->name('attendance.list');
     Route::get('/staff/list', fn () => view('admin.staff.list', ['headerType' => 'admin']))->name('staff.list');
     Route::get('/stamp-correction-requests', fn () => view('stamp_correction_request.list', ['headerType' => 'admin']))->name('stamp_correction_request.list');
-    Route::post('/logout', function (Request $request) {
-        // 管理者ログアウト処理（管理者認証実装時に更新）
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
-        return redirect()->route('admin.login');
-    })->name('logout');
 });
 
 // ログアウト
