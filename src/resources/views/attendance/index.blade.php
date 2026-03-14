@@ -22,24 +22,45 @@
             <p class="attendance-message attendance-message--error">{{ session('error') }}</p>
             @endif
 
+            @php
+            $badgeLabel = '勤務外';
+            if ($todayAttendance) {
+            if ($todayAttendance->clock_out_time) {
+            $badgeLabel = '退勤済';
+            } else {
+            $badgeLabel = ($user->status_id ?? 1) === 3 ? '休憩中' : '出勤中';
+            }
+            }
+            @endphp
             <div class="attendance-status-badge">
-                {{ $user->status?->name ?? '勤務外' }}
+                {{ $badgeLabel }}
             </div>
 
             <p class="attendance-date" id="current-date"></p>
             <p class="attendance-time" id="current-time"></p>
 
             @php
-                $statusId = $user->status_id ?? 1;
+            $hasTodayAttendance = $todayAttendance !== null;
+            $isClockedOut = $hasTodayAttendance && $todayAttendance->clock_out_time !== null;
+            $statusId = $user->status_id ?? 1;
             @endphp
 
-            @if($statusId === 1)
-            {{-- 勤務外: 出勤ボタン --}}
+            @if(!$hasTodayAttendance)
+            {{-- 当日の勤怠なし（出勤可能）: 出勤ボタン --}}
             <form action="{{ route('attendance.clock-in') }}" method="POST" class="attendance-actions">
                 @csrf
                 <button type="submit" class="attendance-btn attendance-btn--primary">出勤</button>
             </form>
-            @elseif($statusId === 2)
+            @elseif($isClockedOut)
+            {{-- 退勤済: お疲れ様でした --}}
+            <p class="attendance-greeting">お疲れ様でした。</p>
+            @elseif($statusId === 3)
+            {{-- 休憩中: 休憩戻ボタン --}}
+            <form action="{{ route('attendance.break-end') }}" method="POST" class="attendance-actions">
+                @csrf
+                <button type="submit" class="attendance-btn attendance-btn--secondary">休憩戻</button>
+            </form>
+            @else
             {{-- 出勤中: 退勤・休憩入ボタン --}}
             <div class="attendance-actions">
                 <form action="{{ route('attendance.clock-out') }}" method="POST" class="attendance-action-form">
@@ -51,15 +72,6 @@
                     <button type="submit" class="attendance-btn attendance-btn--secondary">休憩入</button>
                 </form>
             </div>
-            @elseif($statusId === 3)
-            {{-- 休憩中: 休憩戻ボタン --}}
-            <form action="{{ route('attendance.break-end') }}" method="POST" class="attendance-actions">
-                @csrf
-                <button type="submit" class="attendance-btn attendance-btn--secondary">休憩戻</button>
-            </form>
-            @else
-            {{-- 退勤済: お疲れ様でした --}}
-            <p class="attendance-greeting">お疲れ様でした。</p>
             @endif
         </div>
     </main>

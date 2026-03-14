@@ -1,0 +1,71 @@
+/* Document
+* ========================================================================== */
+
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
+
+::before,
+::after {
+  vertical-align: inherit;
+  text-decoration: inherit;
+}
+
+html {
+  word-break: break-word;
+  -moz-tab-size: 4;
+  tab-size: 4;
+  line-height: 1.5;
+  cursor: default;
+  -webkit-tap-highlight-color: transparent;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+}
+
+h1 {
+  margin: 0.67em 0;
+  font-size: 2em;
+}
+
+main {
+  display: block;
+}
+
+nav ol,
+nav ul {
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  background-color: transparent;
+}
+
+button,
+input,
+select {
+  margin: 0;
+}
+
+button {
+  overflow: visible;
+  text-transform: none;
+}
+
+button,
+[type='button'],
+[type='reset'],
+[type='submit'] {
+  -webkit-appearance: button;
+  appearance: button;
+}
+
+input {
+  overflow: visible;
+}

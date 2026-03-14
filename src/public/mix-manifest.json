@@ -1,0 +1,12 @@
+{
+    "/js/app.js": "/js/app.js",
+    "/css/attendance/detail.css": "/css/attendance/detail.css",
+    "/css/attendance/index.css": "/css/attendance/index.css",
+    "/css/attendance/list.css": "/css/attendance/list.css",
+    "/css/layouts/header.css": "/css/layouts/header.css",
+    "/css/sanitize.css": "/css/sanitize.css",
+    "/css/stamp_correction_request/list.css": "/css/stamp_correction_request/list.css",
+    "/css/auth/verify-email.css": "/css/auth/verify-email.css",
+    "/css/auth/register.css": "/css/auth/register.css",
+    "/css/auth/login.css": "/css/auth/login.css"
+}

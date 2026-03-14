@@ -16,7 +16,8 @@
 html {
   word-break: break-word;
   -moz-tab-size: 4;
-  tab-size: 4;
+  -o-tab-size: 4;
+     tab-size: 4;
   line-height: 1.5;
   cursor: default;
   -webkit-tap-highlight-color: transparent;
@@ -63,9 +64,11 @@ button,
 [type='reset'],
 [type='submit'] {
   -webkit-appearance: button;
-  appearance: button;
+  -moz-appearance: button;
+       appearance: button;
 }
 
 input {
   overflow: visible;
 }
+

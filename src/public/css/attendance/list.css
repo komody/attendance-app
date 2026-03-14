@@ -1,16 +1,14 @@
 .attendance-list {
   min-height: calc(100vh - 80px);
   padding: 32px 24px;
-  background-color: #e5e5e5;
+  background-color: #F0EFF2;
 }
 
 .attendance-list-container {
   max-width: 1000px;
   margin: 0 auto;
-  background-color: #fff;
   border-radius: 8px;
   padding: 32px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .attendance-list-title {
@@ -25,13 +23,13 @@
 .attendance-list-month-nav {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 24px;
+  justify-content: space-between;
+  background-color: #fff;
+  padding: 16px 24px;
   margin-bottom: 24px;
 }
 
 .attendance-list-month-link {
-  color: #0073cc;
   text-decoration: none;
   font-size: 16px;
 }
@@ -46,7 +44,6 @@
   gap: 8px;
   font-size: 18px;
   font-weight: 600;
-  color: #333;
 }
 
 .attendance-list-month-icon {
@@ -55,6 +52,7 @@
 
 .attendance-list-table {
   width: 100%;
+  background-color: #fff;
   border-collapse: collapse;
 }
 
@@ -67,9 +65,7 @@
 }
 
 .attendance-list-table th {
-  background-color: #f5f5f5;
   font-weight: 600;
-  color: #333;
 }
 
 .attendance-list-table tbody tr:hover {
@@ -77,10 +73,11 @@
 }
 
 .attendance-list-detail-link {
-  color: #0073cc;
+  color: #000;
   text-decoration: none;
 }
 
 .attendance-list-detail-link:hover {
   text-decoration: underline;
 }
+

@@ -12,6 +12,12 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/app.js', 'public/js')
-    .postCss('resources/css/app.css', 'public/css', [
-        //
-    ]);
+    .postCss('resources/css/sanitize.css', 'public/css', [])
+    .postCss('resources/css/layouts/header.css', 'public/css/layouts', [])
+    .postCss('resources/css/attendance/list.css', 'public/css/attendance', [])
+    .postCss('resources/css/attendance/index.css', 'public/css/attendance', [])
+    .postCss('resources/css/attendance/detail.css', 'public/css/attendance', [])
+    .postCss('resources/css/auth/login.css', 'public/css/auth', [])
+    .postCss('resources/css/auth/register.css', 'public/css/auth', [])
+    .postCss('resources/css/auth/verify-email.css', 'public/css/auth', [])
+    .postCss('resources/css/stamp_correction_request/list.css', 'public/css/stamp_correction_request', []);
