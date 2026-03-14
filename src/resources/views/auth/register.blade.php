@@ -19,7 +19,7 @@
             <form method="POST" action="{{ route('register') }}" class="auth-register-form" novalidate>
                 @csrf
                 <div class="auth-register-field">
-                    <label for="name" class="auth-register-label">ユーザー名</label>
+                    <label for="name" class="auth-register-label">名前</label>
                     <input type="text" id="name" name="name" value="{{ old('name') }}" class="auth-register-input @error('name') is-invalid @enderror">
                     @error('name')
                     <span class="auth-register-error">{{ $message }}</span>

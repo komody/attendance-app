@@ -1,11 +1,11 @@
 .attendance-detail {
   min-height: calc(100vh - 80px);
   padding: 32px 24px;
-  background-color: #e5e5e5;
+  background-color: #F0EFF2;
 }
 
 .attendance-detail-container {
-  max-width: 600px;
+  width: 900px;
   margin: 0 auto;
 }
 
@@ -33,27 +33,21 @@
   color: #721c24;
 }
 
-.attendance-detail-card {
-  background-color: #fff;
-  border-radius: 8px;
-  padding: 32px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
 .attendance-detail-form {
   margin: 0;
 }
 
 .attendance-detail-list {
+  background-color: #fff;
+  border-radius: 10px;
   margin: 0;
 }
 
 .attendance-detail-row {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 16px 0;
-  border-bottom: 1px solid #e5e5e5;
+  padding: 16px 60px;
+  border-bottom: 2px solid #e1e1e1;
   margin: 0;
 }
 .attendance-detail-row:last-of-type {
@@ -65,43 +59,65 @@
 }
 
 .attendance-detail-label {
+  width: 300px;
   margin: 0;
-  font-size: 14px;
-  font-weight: 600;
-  color: #333;
+  font-size: 16px;
+  font-weight: 700;
+  color: #737373;
 }
 
 .attendance-detail-value {
   margin: 0;
-  font-size: 14px;
-  color: #333;
-  text-align: right;
+  font-size: 16px;
+  font-weight: 700;
+  text-align: left;
 }
+
+.attendance-detail-label-name {
+  margin-left: 20px;
+}
+
+.attendance-detail-date-year {
+  margin-left: 20px;
+}
+
+.attendance-detail-date-month {
+  margin-left: 150px;
+}
+
 
 .attendance-detail-time-inputs {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 50px;
 }
 
 .attendance-detail-time-separator {
-  color: #333;
-  font-weight: 500;
+  font-size: 16px;
+  font-weight: 700;
 }
 
 .attendance-detail-input {
+  width: 100px;
   padding: 8px 12px;
-  border: 1px solid #ccc;
+  border: 1px solid #d9d9d9;
   border-radius: 4px;
+  text-align: center;
   font-size: 14px;
+  font-weight: 700;
 }
+.attendance-detail-input[type="time"]::-webkit-calendar-picker-indicator {
+  display: none;
+}
+
 .attendance-detail-input:focus {
   outline: none;
   border-color: #000;
 }
-.attendance-detail-input--full {
-  width: 100%;
-  min-width: 200px;
+.attendance-detail-text-area {
+  text-align: left;
+  width: 316px;
+  height: 72px;
 }
 
 .attendance-detail-hint {
@@ -115,13 +131,15 @@
 }
 
 .attendance-detail-submit-btn {
-  padding: 12px 32px;
+  width: 130px;
+  height: 50px;
+  padding: 8px 32px;
   background-color: #000;
   color: #fff;
   border: none;
   border-radius: 4px;
-  font-size: 16px;
-  font-weight: 600;
+  font-size: 22px;
+  font-weight: 700;
   cursor: pointer;
 }
 .attendance-detail-submit-btn:hover {
@@ -142,3 +160,4 @@
 .attendance-detail-input--error {
   border-color: #c00;
 }
+
