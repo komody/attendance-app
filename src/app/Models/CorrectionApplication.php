@@ -13,6 +13,8 @@ class CorrectionApplication extends Model
         'corrected_clock_out_time',
         'remarks',
         'correction_status_id',
+        'approved_admin_id',
+        'approval_date',
     ];
 
     public function user()

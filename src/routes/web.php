@@ -36,8 +36,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
 });
 
 // 管理者（/admin/login, /admin/logout は Fortify が担当）
-Route::prefix('admin')->name('admin.')->group(function () {
-    Route::get('/attendance/list', fn () => view('admin.attendance.list', ['headerType' => 'admin']))->name('attendance.list');
+Route::prefix('admin')->name('admin.')->middleware('auth.admin')->group(function () {
+    Route::get('/attendance/list', [App\Http\Controllers\Admin\AttendanceListController::class, 'index'])->name('attendance.list');
+    Route::get('/attendance/list/{year}/{month}/{day}', [App\Http\Controllers\Admin\AttendanceListController::class, 'index'])->name('attendance.list.date');
+    Route::get('/attendance/detail/{id}', [App\Http\Controllers\Admin\AttendanceDetailController::class, 'show'])->name('attendance.detail');
+    Route::post('/attendance/detail/{id}', [App\Http\Controllers\Admin\AttendanceDetailController::class, 'update'])->name('attendance.detail.update');
     Route::get('/staff/list', fn () => view('admin.staff.list', ['headerType' => 'admin']))->name('staff.list');
     Route::get('/stamp-correction-requests', fn () => view('stamp_correction_request.list', ['headerType' => 'admin']))->name('stamp_correction_request.list');
 });
