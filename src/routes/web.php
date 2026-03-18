@@ -41,7 +41,11 @@ Route::prefix('admin')->name('admin.')->middleware('auth.admin')->group(function
     Route::get('/attendance/list/{year}/{month}/{day}', [App\Http\Controllers\Admin\AttendanceListController::class, 'index'])->name('attendance.list.date');
     Route::get('/attendance/detail/{id}', [App\Http\Controllers\Admin\AttendanceDetailController::class, 'show'])->name('attendance.detail');
     Route::post('/attendance/detail/{id}', [App\Http\Controllers\Admin\AttendanceDetailController::class, 'update'])->name('attendance.detail.update');
-    Route::get('/staff/list', fn () => view('admin.staff.list', ['headerType' => 'admin']))->name('staff.list');
+    Route::get('/attendance/staff/{id}/csv/{year}/{month}', [App\Http\Controllers\Admin\StaffAttendanceController::class, 'csv'])->name('attendance.staff.csv.date');
+    Route::get('/attendance/staff/{id}/csv', [App\Http\Controllers\Admin\StaffAttendanceController::class, 'csv'])->name('attendance.staff.csv');
+    Route::get('/attendance/staff/{id}/{year}/{month}', [App\Http\Controllers\Admin\StaffAttendanceController::class, 'index'])->name('attendance.staff.date');
+    Route::get('/attendance/staff/{id}', [App\Http\Controllers\Admin\StaffAttendanceController::class, 'index'])->name('attendance.staff');
+    Route::get('/staff/list', [App\Http\Controllers\Admin\StaffListController::class, 'index'])->name('staff.list');
     Route::get('/stamp-correction-requests', fn () => view('stamp_correction_request.list', ['headerType' => 'admin']))->name('stamp_correction_request.list');
 });
 

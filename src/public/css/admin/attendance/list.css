@@ -86,3 +86,24 @@
   color: #999;
   padding: 24px !important;
 }
+
+.attendance-list-csv-wrap {
+  margin-top: 24px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.attendance-list-csv-btn {
+  display: inline-block;
+  padding: 12px 24px;
+  background-color: #000;
+  color: #fff;
+  text-decoration: none;
+  font-size: 14px;
+  border-radius: 4px;
+}
+
+.attendance-list-csv-btn:hover {
+  background-color: #333;
+  color: #fff;
+}
