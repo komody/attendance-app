@@ -18,9 +18,14 @@
             <h2 class="correction-list-title">申請一覧</h2>
 
             <nav class="correction-list-tabs">
-                <a href="{{ route('stamp_correction_request.list', ['tab' => 'pending']) }}"
+                @php
+                    $isAdmin = ($headerType ?? 'user') === 'admin';
+                    $listRoute = 'stamp_correction_request.list';
+                    $detailRoute = $isAdmin ? 'stamp_correction_request.approve' : 'attendance.detail';
+                @endphp
+                <a href="{{ route($listRoute, ['tab' => 'pending']) }}"
                     class="correction-list-tab {{ ($activeTab ?? 'pending') === 'pending' ? 'correction-list-tab--active' : '' }}">承認待ち</a>
-                <a href="{{ route('stamp_correction_request.list', ['tab' => 'approved']) }}"
+                <a href="{{ route($listRoute, ['tab' => 'approved']) }}"
                     class="correction-list-tab {{ ($activeTab ?? 'pending') === 'approved' ? 'correction-list-tab--active' : '' }}">承認済み</a>
             </nav>
 
@@ -44,7 +49,7 @@
                         <td>{{ $application->remarks ?? '-' }}</td>
                         <td>{{ $application->created_at?->format('Y/m/d') ?? '-' }}</td>
                         <td>
-                            <a href="{{ route('attendance.detail', $application->attendance_id) }}" class="correction-list-detail-link">詳細</a>
+                            <a href="{{ route($detailRoute ?? 'attendance.detail', $isAdmin ? $application->id : $application->attendance_id) }}" class="correction-list-detail-link">詳細</a>
                         </td>
                     </tr>
                     @empty
