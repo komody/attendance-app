@@ -28,7 +28,10 @@ class AttendanceDetailController extends Controller
             ->first();
 
         $isPending = (bool) $pendingApplication;
-        $canEdit = !$isPending;
+        $hasApproved = $attendance->correctionApplications()
+            ->whereHas('correctionStatus', fn ($q) => $q->where('name', '承認済み'))
+            ->exists();
+        $canEdit = !$isPending && !$hasApproved;
 
         if ($pendingApplication) {
             $clockIn = Carbon::parse($pendingApplication->corrected_clock_in_time)->format('H:i');
@@ -55,6 +58,7 @@ class AttendanceDetailController extends Controller
         return view('admin.attendance.detail', [
             'headerType' => 'admin',
             'attendance' => $attendance,
+            'pendingApplication' => $pendingApplication,
             'userName' => $attendance->user->name,
             'displayDate' => $attendance->attendance_date,
             'clockIn' => $clockIn,
@@ -62,8 +66,52 @@ class AttendanceDetailController extends Controller
             'breaksData' => $breaksData,
             'remarks' => $remarks,
             'isPending' => $isPending,
+            'hasApproved' => $hasApproved,
             'canEdit' => $canEdit,
         ]);
+    }
+
+    /**
+     * 修正申請を承認（FN051）
+     */
+    public function approveCorrection(int $id)
+    {
+        $application = CorrectionApplication::with(['attendance', 'correctionBreaks'])
+            ->whereHas('correctionStatus', fn ($q) => $q->where('name', '承認待ち'))
+            ->findOrFail($id);
+
+        $attendance = $application->attendance;
+        $admin = Auth::guard('admin')->user();
+        $approvedStatus = CorrectionStatus::where('name', '承認済み')->firstOrFail();
+
+        DB::transaction(function () use ($application, $attendance, $admin, $approvedStatus) {
+            // 1. 申請を承認済みに更新
+            $application->update([
+                'correction_status_id' => $approvedStatus->id,
+                'approved_admin_id' => $admin->id,
+                'approval_date' => now(),
+            ]);
+
+            // 2. 勤怠データを修正申請の内容で更新
+            $attendance->update([
+                'clock_in_time' => $application->corrected_clock_in_time,
+                'clock_out_time' => $application->corrected_clock_out_time,
+            ]);
+
+            // 3. 休憩データを修正申請の内容で更新
+            $attendance->breaks()->delete();
+            foreach ($application->correctionBreaks as $cb) {
+                BreakTime::create([
+                    'attendance_id' => $attendance->id,
+                    'break_start_time' => $cb->corrected_break_start,
+                    'break_end_time' => $cb->corrected_break_end,
+                ]);
+            }
+        });
+
+        return redirect()
+            ->route('stamp_correction_request.approve', $application->id)
+            ->with('message', '申請を承認しました。');
     }
 
     /**

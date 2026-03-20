@@ -44,7 +44,7 @@ $headerType = $headerType ?? 'login-page';
             <a href="{{ route('admin.staff.list') }}" class="header-nav-link">スタッフ一覧</a>
           </li>
           <li class="header-nav-item">
-            <a href="{{ route('admin.stamp_correction_request.list') }}" class="header-nav-link">申請一覧</a>
+            <a href="{{ route('stamp_correction_request.list') }}" class="header-nav-link">申請一覧</a>
           </li>
           <li class="header-nav-item">
             <form id="admin-logout-form" action="{{ route('admin.logout') }}" method="POST" style="display: none;">

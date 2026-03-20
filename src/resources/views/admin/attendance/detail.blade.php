@@ -17,6 +17,13 @@
         <div class="attendance-detail-container">
             <h2 class="attendance-detail-title">勤怠詳細</h2>
 
+            @if(session('message'))
+            <p class="attendance-detail-message attendance-detail-message--success">{{ session('message') }}</p>
+            @endif
+            @if(session('error'))
+            <p class="attendance-detail-message attendance-detail-message--error">{{ session('error') }}</p>
+            @endif
+
             <div class="attendance-detail-card">
                 @if($canEdit)
                 <form action="{{ route('admin.attendance.detail.update', $attendance->id) }}" method="POST" class="attendance-detail-form" novalidate>
@@ -139,7 +146,21 @@
             </div>
 
             @if($isPending)
-            <p class="attendance-detail-note">*承認待ちのため修正はできません。</p>
+            <div class="attendance-detail-approval">
+                <p class="attendance-detail-note">*承認待ちのため修正はできません。</p>
+                <form action="{{ route($approvalRoute ?? 'admin.attendance.correction.approve', $pendingApplication->id) }}" method="POST" class="attendance-detail-approval-form">
+                    @csrf
+                    <div class="attendance-detail-actions">
+                        <button type="submit" class="attendance-detail-submit-btn">承認</button>
+                    </div>
+                </form>
+            </div>
+            @elseif($hasApproved ?? false)
+            <div class="attendance-detail-approval">
+                <div class="attendance-detail-actions">
+                    <button type="button" class="attendance-detail-submit-btn attendance-detail-submit-btn--disabled" disabled>承認済み</button>
+                </div>
+            </div>
             @endif
         </div>
     </main>

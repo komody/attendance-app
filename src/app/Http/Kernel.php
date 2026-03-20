@@ -56,6 +56,7 @@ class Kernel extends HttpKernel
     protected $routeMiddleware = [
         'auth' => \App\Http\Middleware\Authenticate::class,
         'auth.admin' => \App\Http\Middleware\RedirectIfNotAdmin::class,
+        'auth.user.or.admin' => \App\Http\Middleware\AuthenticateUserOrAdmin::class,
         'fortify.admin' => \App\Http\Middleware\SetFortifyAdminConfig::class,
         'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
         'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,

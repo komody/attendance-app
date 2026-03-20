@@ -146,6 +146,20 @@
   opacity: 0.9;
 }
 
+.attendance-detail-submit-btn--disabled {
+  background-color: #666;
+  cursor: not-allowed;
+  opacity: 0.8;
+}
+
+.attendance-detail-submit-btn--disabled:hover {
+  opacity: 0.8;
+}
+
+.attendance-detail-approval {
+  margin-top: 24px;
+}
+
 .attendance-detail-note {
   margin-top: 16px;
   font-size: 14px;

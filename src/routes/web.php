@@ -32,7 +32,18 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/attendance/clock-out', [App\Http\Controllers\AttendanceController::class, 'clockOut'])->name('attendance.clock-out');
     Route::post('/attendance/break-start', [App\Http\Controllers\AttendanceController::class, 'breakStart'])->name('attendance.break-start');
     Route::post('/attendance/break-end', [App\Http\Controllers\AttendanceController::class, 'breakEnd'])->name('attendance.break-end');
-    Route::get('/stamp-correction-requests', [App\Http\Controllers\StampCorrectionRequestController::class, 'index'])->name('stamp_correction_request.list');
+});
+
+// 申請一覧（一般ユーザー・管理者共通パス、認証ミドルウェアで区別）
+Route::get('/stamp_correction_request/list', [App\Http\Controllers\StampCorrectionRequestListController::class, 'index'])
+    ->middleware(['auth.user.or.admin'])
+    ->name('stamp_correction_request.list');
+
+// 修正申請承認画面（管理者のみ）
+Route::middleware('auth.admin')->group(function () {
+    Route::get('/stamp_correction_request/approve/{attendance_correct_request_id}', [App\Http\Controllers\Admin\StampCorrectionRequestController::class, 'showApprove'])
+        ->name('stamp_correction_request.approve');
+    Route::post('/stamp_correction_request/approve/{attendance_correct_request_id}', [App\Http\Controllers\Admin\StampCorrectionRequestController::class, 'approveCorrection']);
 });
 
 // 管理者（/admin/login, /admin/logout は Fortify が担当）
@@ -41,12 +52,12 @@ Route::prefix('admin')->name('admin.')->middleware('auth.admin')->group(function
     Route::get('/attendance/list/{year}/{month}/{day}', [App\Http\Controllers\Admin\AttendanceListController::class, 'index'])->name('attendance.list.date');
     Route::get('/attendance/detail/{id}', [App\Http\Controllers\Admin\AttendanceDetailController::class, 'show'])->name('attendance.detail');
     Route::post('/attendance/detail/{id}', [App\Http\Controllers\Admin\AttendanceDetailController::class, 'update'])->name('attendance.detail.update');
+    Route::post('/attendance/correction/approve/{id}', [App\Http\Controllers\Admin\AttendanceDetailController::class, 'approveCorrection'])->name('attendance.correction.approve');
     Route::get('/attendance/staff/{id}/csv/{year}/{month}', [App\Http\Controllers\Admin\StaffAttendanceController::class, 'csv'])->name('attendance.staff.csv.date');
     Route::get('/attendance/staff/{id}/csv', [App\Http\Controllers\Admin\StaffAttendanceController::class, 'csv'])->name('attendance.staff.csv');
     Route::get('/attendance/staff/{id}/{year}/{month}', [App\Http\Controllers\Admin\StaffAttendanceController::class, 'index'])->name('attendance.staff.date');
     Route::get('/attendance/staff/{id}', [App\Http\Controllers\Admin\StaffAttendanceController::class, 'index'])->name('attendance.staff');
     Route::get('/staff/list', [App\Http\Controllers\Admin\StaffListController::class, 'index'])->name('staff.list');
-    Route::get('/stamp-correction-requests', fn () => view('stamp_correction_request.list', ['headerType' => 'admin']))->name('stamp_correction_request.list');
 });
 
 // ログアウト
