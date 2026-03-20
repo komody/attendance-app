@@ -31,7 +31,7 @@ class AttendanceDetailController extends Controller
         $hasApproved = $attendance->correctionApplications()
             ->whereHas('correctionStatus', fn ($q) => $q->where('name', '承認済み'))
             ->exists();
-        $canEdit = !$isPending && !$hasApproved;
+        $canEdit = !$isPending;
 
         if ($pendingApplication) {
             $clockIn = Carbon::parse($pendingApplication->corrected_clock_in_time)->format('H:i');
@@ -110,7 +110,7 @@ class AttendanceDetailController extends Controller
         });
 
         return redirect()
-            ->route('stamp_correction_request.approve', $application->id)
+            ->route('admin.attendance.detail', $attendance->id)
             ->with('message', '申請を承認しました。');
     }
 

@@ -16,15 +16,6 @@
     <main class="auth-login">
         <div class="auth-login-container">
             <h2 class="auth-login-title">管理者ログイン</h2>
-            @if(session('errors'))
-            <div class="auth-login-errors">
-                <ul>
-                    @foreach(session('errors') as $error)
-                    <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-            @endif
             <form method="POST" action="{{ route('admin.login') }}" class="auth-login-form" novalidate>
                 @csrf
                 <div class="auth-login-field">

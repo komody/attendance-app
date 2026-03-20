@@ -155,12 +155,6 @@
                     </div>
                 </form>
             </div>
-            @elseif($hasApproved ?? false)
-            <div class="attendance-detail-approval">
-                <div class="attendance-detail-actions">
-                    <button type="button" class="attendance-detail-submit-btn attendance-detail-submit-btn--disabled" disabled>承認済み</button>
-                </div>
-            </div>
             @endif
         </div>
     </main>
