@@ -46,7 +46,7 @@
 .attendance-detail-row {
   display: flex;
   align-items: center;
-  padding: 16px 60px;
+  padding: 36px 60px;
   border-bottom: 2px solid #e1e1e1;
   margin: 0;
 }
@@ -73,14 +73,6 @@
   text-align: left;
 }
 
-.attendance-detail-label-name {
-  margin-left: 20px;
-}
-
-.attendance-detail-date-year {
-  margin-left: 20px;
-}
-
 .attendance-detail-date-month {
   margin-left: 150px;
 }
@@ -92,7 +84,23 @@
   gap: 50px;
 }
 
+.attendance-detail-value:has(.attendance-detail-time-start) {
+  display: inline-flex;
+  align-items: center;
+  gap: 80px;
+}
+
+.attendance-detail-time-start {
+  font-size: 16px;
+  font-weight: 700;
+}
+
 .attendance-detail-time-separator {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.attendance-detail-time-end {
   font-size: 16px;
   font-weight: 700;
 }
@@ -147,9 +155,11 @@
 }
 
 .attendance-detail-note {
-  margin-top: 16px;
-  font-size: 14px;
-  color: #c00;
+  text-align: end;
+  margin-top: 32px;
+  font-size: 18px;
+  letter-spacing: 0.15em;
+  color: #f00;
 }
 
 .attendance-detail-error-list {
@@ -159,5 +169,18 @@
 
 .attendance-detail-input--error {
   border-color: #c00;
+}
+
+.attendance-detail-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.attendance-detail-field-error {
+  margin: 0;
+  font-size: 12px;
+  color: #c00 !important;
+  font-weight: 400;
 }
 
