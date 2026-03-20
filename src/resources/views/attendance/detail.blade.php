@@ -23,19 +23,10 @@
             @if(session('error'))
             <p class="attendance-detail-message attendance-detail-message--error">{{ session('error') }}</p>
             @endif
-            @if($errors->any())
-            <div class="attendance-detail-message attendance-detail-message--error">
-                <ul class="attendance-detail-error-list">
-                    @foreach($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-            @endif
 
             <div class="attendance-detail-card">
                 @if($canEdit)
-                <form action="{{ route('attendance.correction.store') }}" method="POST" class="attendance-detail-form">
+                <form action="{{ route('attendance.correction.store') }}" method="POST" class="attendance-detail-form" novalidate>
                     @csrf
                     <input type="hidden" name="attendance_id" value="{{ $attendance->id }}">
                     @endif
@@ -56,13 +47,27 @@
                             <dt class="attendance-detail-label">出勤・退勤</dt>
                             <dd class="attendance-detail-value">
                                 @if($canEdit)
-                                <span class="attendance-detail-time-inputs">
-                                    <input type="time" name="corrected_clock_in_time" value="{{ old('corrected_clock_in_time', $clockIn) }}" class="attendance-detail-input @error('corrected_clock_in_time') attendance-detail-input--error @enderror" required>
-                                    <span class="attendance-detail-time-separator">~</span>
-                                    <input type="time" name="corrected_clock_out_time" value="{{ old('corrected_clock_out_time', $clockOut) }}" class="attendance-detail-input @error('corrected_clock_out_time') attendance-detail-input--error @enderror" required>
-                                </span>
+                                <div class="attendance-detail-field">
+                                    <span class="attendance-detail-time-inputs">
+                                        <input type="time" name="corrected_clock_in_time" value="{{ old('corrected_clock_in_time', $clockIn) }}" class="attendance-detail-input @error('corrected_clock_in_time') attendance-detail-input--error @enderror" required>
+                                        <span class="attendance-detail-time-separator">~</span>
+                                        <input type="time" name="corrected_clock_out_time" value="{{ old('corrected_clock_out_time', $clockOut) }}" class="attendance-detail-input @error('corrected_clock_out_time') attendance-detail-input--error @enderror" required>
+                                    </span>
+                                    @error('corrected_clock_in_time')
+                                    <p class="attendance-detail-field-error">{{ $message }}</p>
+                                    @enderror
+                                    @error('corrected_clock_out_time')
+                                    <p class="attendance-detail-field-error">{{ $message }}</p>
+                                    @enderror
+                                </div>
                                 @else
-                                {{ $clockIn && $clockOut ? "{$clockIn} ~ {$clockOut}" : ($clockIn ?? '-') }}
+                                @if($clockIn && $clockOut)
+                                <span class="attendance-detail-time-start">{{ $clockIn }}</span>
+                                <span class="attendance-detail-time-separator">~</span>
+                                <span class="attendance-detail-time-end">{{ $clockOut }}</span>
+                                @else
+                                {{ $clockIn ?? '-' }}
+                                @endif
                                 @endif
                             </dd>
                         </div>
@@ -71,14 +76,28 @@
                             <dt class="attendance-detail-label">休憩{{ $index + 1 }}</dt>
                             <dd class="attendance-detail-value">
                                 @if($canEdit && isset($break['break_id']))
-                                <input type="hidden" name="breaks[{{ $index }}][break_id]" value="{{ $break['break_id'] }}">
-                                <span class="attendance-detail-time-inputs">
-                                    <input type="time" name="breaks[{{ $index }}][corrected_break_start]" value="{{ old("breaks.{$index}.corrected_break_start", $break['start'] ?? '') }}" class="attendance-detail-input" required>
-                                    <span class="attendance-detail-time-separator">~</span>
-                                    <input type="time" name="breaks[{{ $index }}][corrected_break_end]" value="{{ old("breaks.{$index}.corrected_break_end", $break['end'] ?? '') }}" class="attendance-detail-input" required>
-                                </span>
+                                <div class="attendance-detail-field">
+                                    <input type="hidden" name="breaks[{{ $index }}][break_id]" value="{{ $break['break_id'] }}">
+                                    <span class="attendance-detail-time-inputs">
+                                        <input type="time" name="breaks[{{ $index }}][corrected_break_start]" value="{{ old("breaks.{$index}.corrected_break_start", $break['start'] ?? '') }}" class="attendance-detail-input @error("breaks.{$index}.corrected_break_start") attendance-detail-input--error @enderror @error("breaks.{$index}.corrected_break_end") attendance-detail-input--error @enderror" required>
+                                        <span class="attendance-detail-time-separator">~</span>
+                                        <input type="time" name="breaks[{{ $index }}][corrected_break_end]" value="{{ old("breaks.{$index}.corrected_break_end", $break['end'] ?? '') }}" class="attendance-detail-input @error("breaks.{$index}.corrected_break_start") attendance-detail-input--error @enderror @error("breaks.{$index}.corrected_break_end") attendance-detail-input--error @enderror" required>
+                                    </span>
+                                    @error("breaks.{$index}.corrected_break_start")
+                                    <p class="attendance-detail-field-error">{{ $message }}</p>
+                                    @enderror
+                                    @error("breaks.{$index}.corrected_break_end")
+                                    <p class="attendance-detail-field-error">{{ $message }}</p>
+                                    @enderror
+                                </div>
                                 @else
-                                {{ ($break['start'] ?? '') && ($break['end'] ?? '') ? ($break['start'] . ' ~ ' . $break['end']) : '-' }}
+                                @if(($break['start'] ?? '') && ($break['end'] ?? ''))
+                                <span class="attendance-detail-time-start">{{ $break['start'] }}</span>
+                                <span class="attendance-detail-time-separator">~</span>
+                                <span class="attendance-detail-time-end">{{ $break['end'] }}</span>
+                                @else
+                                -
+                                @endif
                                 @endif
                             </dd>
                         </div>
@@ -95,11 +114,19 @@
                         <div class="attendance-detail-row">
                             <dt class="attendance-detail-label">休憩{{ count($breaksData) + 1 }}</dt>
                             <dd class="attendance-detail-value">
-                                <span class="attendance-detail-time-inputs">
-                                    <input type="time" name="new_breaks[0][corrected_break_start]" value="{{ old('new_breaks.0.corrected_break_start') }}" class="attendance-detail-input">
-                                    <span class="attendance-detail-time-separator">~</span>
-                                    <input type="time" name="new_breaks[0][corrected_break_end]" value="{{ old('new_breaks.0.corrected_break_end') }}" class="attendance-detail-input">
-                                </span>
+                                <div class="attendance-detail-field">
+                                    <span class="attendance-detail-time-inputs">
+                                        <input type="time" name="new_breaks[0][corrected_break_start]" value="{{ old('new_breaks.0.corrected_break_start') }}" class="attendance-detail-input @error('new_breaks.0.corrected_break_start') attendance-detail-input--error @enderror @error('new_breaks.0.corrected_break_end') attendance-detail-input--error @enderror">
+                                        <span class="attendance-detail-time-separator">~</span>
+                                        <input type="time" name="new_breaks[0][corrected_break_end]" value="{{ old('new_breaks.0.corrected_break_end') }}" class="attendance-detail-input @error('new_breaks.0.corrected_break_start') attendance-detail-input--error @enderror @error('new_breaks.0.corrected_break_end') attendance-detail-input--error @enderror">
+                                    </span>
+                                    @error('new_breaks.0.corrected_break_start')
+                                    <p class="attendance-detail-field-error">{{ $message }}</p>
+                                    @enderror
+                                    @error('new_breaks.0.corrected_break_end')
+                                    <p class="attendance-detail-field-error">{{ $message }}</p>
+                                    @enderror
+                                </div>
                             </dd>
                         </div>
                         @endif
@@ -107,7 +134,12 @@
                             <dt class="attendance-detail-label">備考</dt>
                             <dd class="attendance-detail-value">
                                 @if($canEdit)
-                                <input type="text" name="remarks" value="{{ old('remarks', $remarks) }}" class="attendance-detail-input attendance-detail-text-area @error('remarks') attendance-detail-input--error @enderror" required>
+                                <div class="attendance-detail-field">
+                                    <input type="text" name="remarks" value="{{ old('remarks', $remarks) }}" class="attendance-detail-input attendance-detail-text-area @error('remarks') attendance-detail-input--error @enderror" required>
+                                    @error('remarks')
+                                    <p class="attendance-detail-field-error">{{ $message }}</p>
+                                    @enderror
+                                </div>
                                 @else
                                 {{ $remarks ?: '-' }}
                                 @endif
