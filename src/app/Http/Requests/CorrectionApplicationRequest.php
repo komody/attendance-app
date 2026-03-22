@@ -54,8 +54,8 @@ class CorrectionApplicationRequest extends FormRequest
             $clockIn = $this->input('corrected_clock_in_time');
             $clockOut = $this->input('corrected_clock_out_time');
 
-            // Rule 1: 出勤時間が退勤時間より後 / 退勤時間が出勤時間より前
-            if ($clockIn && $clockOut && strtotime($clockIn) >= strtotime($clockOut)) {
+            // Rule 1: 出勤時間が退勤時間より後 / 退勤時間が出勤時間より前（同じ時刻は許可）
+            if ($clockIn && $clockOut && strtotime($clockIn) > strtotime($clockOut)) {
                 $validator->errors()->add(
                     'corrected_clock_in_time',
                     '出勤時間もしくは退勤時間が不適切な値です'
@@ -79,8 +79,8 @@ class CorrectionApplicationRequest extends FormRequest
                     ? "breaks.{$index}.corrected_break_end"
                     : "new_breaks." . ($index - $breaksCount) . ".corrected_break_end";
 
-                // 休憩終了 > 休憩開始
-                if (strtotime($end) <= strtotime($start)) {
+                // 休憩終了 >= 休憩開始（同じ時刻は許可）
+                if (strtotime($end) < strtotime($start)) {
                     $validator->errors()->add($errorKey, '休憩時間が不適切な値です');
                     return;
                 }
@@ -90,7 +90,7 @@ class CorrectionApplicationRequest extends FormRequest
                     $validator->errors()->add($errorKey, '休憩時間が不適切な値です');
                     return;
                 }
-                if ($clockOut && strtotime($start) >= strtotime($clockOut)) {
+                if ($clockOut && strtotime($start) > strtotime($clockOut)) {
                     $validator->errors()->add($errorKey, '休憩時間が不適切な値です');
                     return;
                 }

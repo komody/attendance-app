@@ -89,27 +89,16 @@
                             </dd>
                         </div>
                         @endforeach
-                        @if($canEdit && count($breaksData) === 0)
-                        <div class="attendance-detail-row attendance-detail-row--empty">
-                            <dt class="attendance-detail-label">休憩</dt>
-                            <dd class="attendance-detail-value">
-                                <span class="attendance-detail-hint">（休憩データがありません）</span>
-                            </dd>
-                        </div>
-                        @endif
                         @if($canEdit)
                         <div class="attendance-detail-row">
-                            <dt class="attendance-detail-label">休憩{{ count($breaksData) + 1 }}</dt>
+                            <dt class="attendance-detail-label">休憩@if(count($breaksData) > 0){{ count($breaksData) + 1 }}@endif</dt>
                             <dd class="attendance-detail-value">
                                 <div class="attendance-detail-field">
                                     <span class="attendance-detail-time-inputs">
-                                        <input type="time" name="new_breaks[0][corrected_break_start]" value="{{ old('new_breaks.0.corrected_break_start') }}" class="attendance-detail-input @if($errors->hasAny(['breaks', 'new_breaks.0.corrected_break_start', 'new_breaks.0.corrected_break_end'])) attendance-detail-input--error @endif">
+                                        <input type="time" name="new_breaks[0][corrected_break_start]" value="{{ old('new_breaks.0.corrected_break_start') }}" class="attendance-detail-input @error('new_breaks.0.corrected_break_start') attendance-detail-input--error @enderror @error('new_breaks.0.corrected_break_end') attendance-detail-input--error @enderror">
                                         <span class="attendance-detail-time-separator">~</span>
-                                        <input type="time" name="new_breaks[0][corrected_break_end]" value="{{ old('new_breaks.0.corrected_break_end') }}" class="attendance-detail-input @if($errors->hasAny(['breaks', 'new_breaks.0.corrected_break_start', 'new_breaks.0.corrected_break_end'])) attendance-detail-input--error @endif">
+                                        <input type="time" name="new_breaks[0][corrected_break_end]" value="{{ old('new_breaks.0.corrected_break_end') }}" class="attendance-detail-input @error('new_breaks.0.corrected_break_start') attendance-detail-input--error @enderror @error('new_breaks.0.corrected_break_end') attendance-detail-input--error @enderror">
                                     </span>
-                                    @error('breaks')
-                                    <p class="attendance-detail-field-error">{{ $message }}</p>
-                                    @enderror
                                     @error('new_breaks.0.corrected_break_start')
                                     <p class="attendance-detail-field-error">{{ $message }}</p>
                                     @enderror

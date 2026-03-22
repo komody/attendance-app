@@ -30,10 +30,17 @@ class StampCorrectionRequestController extends Controller
         $clockIn = Carbon::parse($application->corrected_clock_in_time)->format('H:i');
         $clockOut = Carbon::parse($application->corrected_clock_out_time)->format('H:i');
         $remarks = $application->remarks;
-        $breaksData = $application->correctionBreaks->map(fn ($cb) => [
-            'start' => Carbon::parse($cb->corrected_break_start)->format('H:i'),
-            'end' => Carbon::parse($cb->corrected_break_end)->format('H:i'),
-        ])->values()->all();
+        if (!$isPending && $attendance->breaks->isNotEmpty()) {
+            $breaksData = $attendance->breaks->map(fn($b) => [
+                'start' => Carbon::parse($b->break_start_time)->format('H:i'),
+                'end' => Carbon::parse($b->break_end_time)->format('H:i'),
+            ])->values()->all();
+        } else {
+            $breaksData = $application->correctionBreaks->map(fn($cb) => [
+                'start' => Carbon::parse($cb->corrected_break_start)->format('H:i'),
+                'end' => Carbon::parse($cb->corrected_break_end)->format('H:i'),
+            ])->values()->all();
+        }
 
         return view('stamp_correction_request.approve', [
             'headerType' => 'admin',
