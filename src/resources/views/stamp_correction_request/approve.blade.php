@@ -80,9 +80,10 @@
 
                 @if($isPending)
                 <div class="approve-approval">
-                    <div class="approve-actions">
+                    <form action="{{ route('stamp_correction_request.approve', $pendingApplication->id) }}" method="POST" class="approve-actions">
+                        @csrf
                         <button type="submit" class="approve-submit-btn">承認</button>
-                    </div>
+                    </form>
                 </div>
                 @else
                 <div class="approve-approval">

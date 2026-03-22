@@ -54,8 +54,8 @@ class AdminAttendanceUpdateRequest extends FormRequest
             $clockIn = $this->input('corrected_clock_in_time');
             $clockOut = $this->input('corrected_clock_out_time');
 
-            // Rule 1: 出勤時間が退勤時間より後 / 退勤時間が出勤時間より前
-            if ($clockIn && $clockOut && strtotime($clockIn) >= strtotime($clockOut)) {
+            // Rule 1: 出勤時間が退勤時間より後 / 退勤時間が出勤時間より前（同じ時刻は許可）
+            if ($clockIn && $clockOut && strtotime($clockIn) > strtotime($clockOut)) {
                 $validator->errors()->add(
                     'corrected_clock_in_time',
                     '出勤時間もしくは退勤時間が不適切な値です'
@@ -81,8 +81,13 @@ class AdminAttendanceUpdateRequest extends FormRequest
                 }
             }
 
-            // Rule 2 & 3: 休憩時間の検証
-            foreach (array_merge($breaks, $newBreaks ?? []) as $break) {
+            // Rule 2 & 3: 休憩時間の検証（該当する入力欄にエラーを紐づける）
+            $breaksList = array_values($breaks);
+            $newBreaksList = array_values($newBreaks ?? []);
+            $allBreaks = array_merge($breaksList, $newBreaksList);
+            $breaksCount = count($breaksList);
+
+            foreach ($allBreaks as $i => $break) {
                 $start = $break['corrected_break_start'] ?? null;
                 $end = $break['corrected_break_end'] ?? null;
 
@@ -90,25 +95,32 @@ class AdminAttendanceUpdateRequest extends FormRequest
                     continue;
                 }
 
-                // 休憩終了 > 休憩開始
-                if (strtotime($end) <= strtotime($start)) {
-                    $validator->errors()->add('breaks', '休憩の終了時刻は開始時刻より後にしてください。');
+                $fieldKey = $i < $breaksCount
+                    ? "breaks.{$i}.corrected_break_end"
+                    : 'new_breaks.' . ($i - $breaksCount) . '.corrected_break_end';
+
+                // 休憩終了 >= 休憩開始（同じ時刻は許可）
+                if (strtotime($end) < strtotime($start)) {
+                    $validator->errors()->add($fieldKey, '休憩の終了時刻は開始時刻より後にしてください。');
                     return;
                 }
 
                 // Rule 2: 休憩開始時間が出勤時間より前 または 退勤時間より後
+                $startFieldKey = $i < $breaksCount
+                    ? "breaks.{$i}.corrected_break_start"
+                    : 'new_breaks.' . ($i - $breaksCount) . '.corrected_break_start';
                 if ($clockIn && strtotime($start) < strtotime($clockIn)) {
-                    $validator->errors()->add('breaks', '休憩時間が不適切な値です');
+                    $validator->errors()->add($startFieldKey, '休憩時間が不適切な値です');
                     return;
                 }
-                if ($clockOut && strtotime($start) >= strtotime($clockOut)) {
-                    $validator->errors()->add('breaks', '休憩時間が不適切な値です');
+                if ($clockOut && strtotime($start) > strtotime($clockOut)) {
+                    $validator->errors()->add($startFieldKey, '休憩時間が不適切な値です');
                     return;
                 }
 
                 // Rule 3: 休憩終了時間が退勤時間より後
                 if ($clockOut && strtotime($end) > strtotime($clockOut)) {
-                    $validator->errors()->add('breaks', '休憩時間もしくは退勤時間が不適切な値です');
+                    $validator->errors()->add($fieldKey, '休憩時間もしくは退勤時間が不適切な値です');
                     return;
                 }
             }
