@@ -25,7 +25,7 @@
       @endif
 
       <div class="auth-verify-email-actions">
-        @if(config('app.env') === 'local')
+        @if(app()->environment('local', 'testing'))
         <a href="http://localhost:8025" class="auth-verify-email-button" target="_blank" rel="noopener">認証はこちらから</a>
         @endif
         <form method="POST" action="{{ route('verification.send') }}">
