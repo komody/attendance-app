@@ -41,7 +41,7 @@ class AdminAttendanceUpdateRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'remarks.required' => '備考を記入してください。',
+            'remarks.required' => '備考を記入してください',
         ];
     }
 
