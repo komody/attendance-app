@@ -140,7 +140,6 @@ class FortifyServiceProvider extends \Illuminate\Support\ServiceProvider
                     return $admin;
                 }
 
-                session()->flash('errors', collect(['ログイン情報が登録されていません']));
                 return null;
             }
 
@@ -151,7 +150,6 @@ class FortifyServiceProvider extends \Illuminate\Support\ServiceProvider
                 return $user;
             }
 
-            session()->flash('errors', collect(['ログイン情報が登録されていません']));
             return null;
         });
     }

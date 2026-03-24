@@ -36,8 +36,13 @@
                 {{ $badgeLabel }}
             </div>
 
-            <p class="attendance-date" id="current-date"></p>
-            <p class="attendance-time" id="current-time"></p>
+            @if(app()->environment('testing'))
+                <p class="attendance-date" id="current-date">{{ now()->format('Y年n月j日') }}({{ ['日','月','火','水','木','金','土'][now()->dayOfWeek] }})</p>
+                <p class="attendance-time" id="current-time">{{ now()->format('H:i') }}</p>
+            @else
+                <p class="attendance-date" id="current-date"></p>
+                <p class="attendance-time" id="current-time"></p>
+            @endif
 
             @php
             $hasTodayAttendance = $todayAttendance !== null;
