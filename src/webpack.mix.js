@@ -22,4 +22,6 @@ mix.js('resources/js/app.js', 'public/js')
     .postCss('resources/css/auth/verify-email.css', 'public/css/auth', [])
     .postCss('resources/css/stamp_correction_request/list.css', 'public/css/stamp_correction_request', [])
     .postCss('resources/css/stamp_correction_request/approve.css', 'public/css/stamp_correction_request', [])
+    .postCss('resources/css/admin/attendance/list.css', 'public/css/admin/attendance', [])
+    .postCss('resources/css/admin/attendance/detail.css', 'public/css/admin/attendance', [])
     .postCss('resources/css/admin/staff/list.css', 'public/css/admin/staff', []);

@@ -19417,6 +19417,32 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ },
 
+/***/ "./resources/css/admin/attendance/list.css"
+/*!*************************************************!*\
+  !*** ./resources/css/admin/attendance/list.css ***!
+  \*************************************************/
+(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ },
+
+/***/ "./resources/css/admin/attendance/detail.css"
+/*!***************************************************!*\
+  !*** ./resources/css/admin/attendance/detail.css ***!
+  \***************************************************/
+(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
+
+/***/ },
+
 /***/ "./resources/css/admin/staff/list.css"
 /*!********************************************!*\
   !*** ./resources/css/admin/staff/list.css ***!
@@ -19823,6 +19849,8 @@ module.exports = /*#__PURE__*/JSON.parse('{"name":"axios","version":"0.21.4","de
 /******/ 			"css/layouts/header": 0,
 /******/ 			"css/sanitize": 0,
 /******/ 			"css/admin/staff/list": 0,
+/******/ 			"css/admin/attendance/detail": 0,
+/******/ 			"css/admin/attendance/list": 0,
 /******/ 			"css/stamp_correction_request/approve": 0,
 /******/ 			"css/stamp_correction_request/list": 0,
 /******/ 			"css/auth/verify-email": 0,
@@ -19877,18 +19905,20 @@ module.exports = /*#__PURE__*/JSON.parse('{"name":"axios","version":"0.21.4","de
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	__webpack_require__.O(undefined, ["css/attendance/detail","css/attendance/index","css/attendance/list","css/layouts/header","css/sanitize","css/admin/staff/list","css/stamp_correction_request/approve","css/stamp_correction_request/list","css/auth/verify-email","css/auth/register","css/auth/login"], () => (__webpack_require__("./resources/js/app.js")))
-/******/ 	__webpack_require__.O(undefined, ["css/attendance/detail","css/attendance/index","css/attendance/list","css/layouts/header","css/sanitize","css/admin/staff/list","css/stamp_correction_request/approve","css/stamp_correction_request/list","css/auth/verify-email","css/auth/register","css/auth/login"], () => (__webpack_require__("./resources/css/sanitize.css")))
-/******/ 	__webpack_require__.O(undefined, ["css/attendance/detail","css/attendance/index","css/attendance/list","css/layouts/header","css/sanitize","css/admin/staff/list","css/stamp_correction_request/approve","css/stamp_correction_request/list","css/auth/verify-email","css/auth/register","css/auth/login"], () => (__webpack_require__("./resources/css/layouts/header.css")))
-/******/ 	__webpack_require__.O(undefined, ["css/attendance/detail","css/attendance/index","css/attendance/list","css/layouts/header","css/sanitize","css/admin/staff/list","css/stamp_correction_request/approve","css/stamp_correction_request/list","css/auth/verify-email","css/auth/register","css/auth/login"], () => (__webpack_require__("./resources/css/attendance/list.css")))
-/******/ 	__webpack_require__.O(undefined, ["css/attendance/detail","css/attendance/index","css/attendance/list","css/layouts/header","css/sanitize","css/admin/staff/list","css/stamp_correction_request/approve","css/stamp_correction_request/list","css/auth/verify-email","css/auth/register","css/auth/login"], () => (__webpack_require__("./resources/css/attendance/index.css")))
-/******/ 	__webpack_require__.O(undefined, ["css/attendance/detail","css/attendance/index","css/attendance/list","css/layouts/header","css/sanitize","css/admin/staff/list","css/stamp_correction_request/approve","css/stamp_correction_request/list","css/auth/verify-email","css/auth/register","css/auth/login"], () => (__webpack_require__("./resources/css/attendance/detail.css")))
-/******/ 	__webpack_require__.O(undefined, ["css/attendance/detail","css/attendance/index","css/attendance/list","css/layouts/header","css/sanitize","css/admin/staff/list","css/stamp_correction_request/approve","css/stamp_correction_request/list","css/auth/verify-email","css/auth/register","css/auth/login"], () => (__webpack_require__("./resources/css/auth/login.css")))
-/******/ 	__webpack_require__.O(undefined, ["css/attendance/detail","css/attendance/index","css/attendance/list","css/layouts/header","css/sanitize","css/admin/staff/list","css/stamp_correction_request/approve","css/stamp_correction_request/list","css/auth/verify-email","css/auth/register","css/auth/login"], () => (__webpack_require__("./resources/css/auth/register.css")))
-/******/ 	__webpack_require__.O(undefined, ["css/attendance/detail","css/attendance/index","css/attendance/list","css/layouts/header","css/sanitize","css/admin/staff/list","css/stamp_correction_request/approve","css/stamp_correction_request/list","css/auth/verify-email","css/auth/register","css/auth/login"], () => (__webpack_require__("./resources/css/auth/verify-email.css")))
-/******/ 	__webpack_require__.O(undefined, ["css/attendance/detail","css/attendance/index","css/attendance/list","css/layouts/header","css/sanitize","css/admin/staff/list","css/stamp_correction_request/approve","css/stamp_correction_request/list","css/auth/verify-email","css/auth/register","css/auth/login"], () => (__webpack_require__("./resources/css/stamp_correction_request/list.css")))
-/******/ 	__webpack_require__.O(undefined, ["css/attendance/detail","css/attendance/index","css/attendance/list","css/layouts/header","css/sanitize","css/admin/staff/list","css/stamp_correction_request/approve","css/stamp_correction_request/list","css/auth/verify-email","css/auth/register","css/auth/login"], () => (__webpack_require__("./resources/css/stamp_correction_request/approve.css")))
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/attendance/detail","css/attendance/index","css/attendance/list","css/layouts/header","css/sanitize","css/admin/staff/list","css/stamp_correction_request/approve","css/stamp_correction_request/list","css/auth/verify-email","css/auth/register","css/auth/login"], () => (__webpack_require__("./resources/css/admin/staff/list.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/attendance/detail","css/attendance/index","css/attendance/list","css/layouts/header","css/sanitize","css/admin/staff/list","css/admin/attendance/detail","css/admin/attendance/list","css/stamp_correction_request/approve","css/stamp_correction_request/list","css/auth/verify-email","css/auth/register","css/auth/login"], () => (__webpack_require__("./resources/js/app.js")))
+/******/ 	__webpack_require__.O(undefined, ["css/attendance/detail","css/attendance/index","css/attendance/list","css/layouts/header","css/sanitize","css/admin/staff/list","css/admin/attendance/detail","css/admin/attendance/list","css/stamp_correction_request/approve","css/stamp_correction_request/list","css/auth/verify-email","css/auth/register","css/auth/login"], () => (__webpack_require__("./resources/css/sanitize.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/attendance/detail","css/attendance/index","css/attendance/list","css/layouts/header","css/sanitize","css/admin/staff/list","css/admin/attendance/detail","css/admin/attendance/list","css/stamp_correction_request/approve","css/stamp_correction_request/list","css/auth/verify-email","css/auth/register","css/auth/login"], () => (__webpack_require__("./resources/css/layouts/header.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/attendance/detail","css/attendance/index","css/attendance/list","css/layouts/header","css/sanitize","css/admin/staff/list","css/admin/attendance/detail","css/admin/attendance/list","css/stamp_correction_request/approve","css/stamp_correction_request/list","css/auth/verify-email","css/auth/register","css/auth/login"], () => (__webpack_require__("./resources/css/attendance/list.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/attendance/detail","css/attendance/index","css/attendance/list","css/layouts/header","css/sanitize","css/admin/staff/list","css/admin/attendance/detail","css/admin/attendance/list","css/stamp_correction_request/approve","css/stamp_correction_request/list","css/auth/verify-email","css/auth/register","css/auth/login"], () => (__webpack_require__("./resources/css/attendance/index.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/attendance/detail","css/attendance/index","css/attendance/list","css/layouts/header","css/sanitize","css/admin/staff/list","css/admin/attendance/detail","css/admin/attendance/list","css/stamp_correction_request/approve","css/stamp_correction_request/list","css/auth/verify-email","css/auth/register","css/auth/login"], () => (__webpack_require__("./resources/css/attendance/detail.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/attendance/detail","css/attendance/index","css/attendance/list","css/layouts/header","css/sanitize","css/admin/staff/list","css/admin/attendance/detail","css/admin/attendance/list","css/stamp_correction_request/approve","css/stamp_correction_request/list","css/auth/verify-email","css/auth/register","css/auth/login"], () => (__webpack_require__("./resources/css/auth/login.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/attendance/detail","css/attendance/index","css/attendance/list","css/layouts/header","css/sanitize","css/admin/staff/list","css/admin/attendance/detail","css/admin/attendance/list","css/stamp_correction_request/approve","css/stamp_correction_request/list","css/auth/verify-email","css/auth/register","css/auth/login"], () => (__webpack_require__("./resources/css/auth/register.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/attendance/detail","css/attendance/index","css/attendance/list","css/layouts/header","css/sanitize","css/admin/staff/list","css/admin/attendance/detail","css/admin/attendance/list","css/stamp_correction_request/approve","css/stamp_correction_request/list","css/auth/verify-email","css/auth/register","css/auth/login"], () => (__webpack_require__("./resources/css/auth/verify-email.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/attendance/detail","css/attendance/index","css/attendance/list","css/layouts/header","css/sanitize","css/admin/staff/list","css/admin/attendance/detail","css/admin/attendance/list","css/stamp_correction_request/approve","css/stamp_correction_request/list","css/auth/verify-email","css/auth/register","css/auth/login"], () => (__webpack_require__("./resources/css/stamp_correction_request/list.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/attendance/detail","css/attendance/index","css/attendance/list","css/layouts/header","css/sanitize","css/admin/staff/list","css/admin/attendance/detail","css/admin/attendance/list","css/stamp_correction_request/approve","css/stamp_correction_request/list","css/auth/verify-email","css/auth/register","css/auth/login"], () => (__webpack_require__("./resources/css/stamp_correction_request/approve.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/attendance/detail","css/attendance/index","css/attendance/list","css/layouts/header","css/sanitize","css/admin/staff/list","css/admin/attendance/detail","css/admin/attendance/list","css/stamp_correction_request/approve","css/stamp_correction_request/list","css/auth/verify-email","css/auth/register","css/auth/login"], () => (__webpack_require__("./resources/css/admin/attendance/list.css")))
+/******/ 	__webpack_require__.O(undefined, ["css/attendance/detail","css/attendance/index","css/attendance/list","css/layouts/header","css/sanitize","css/admin/staff/list","css/admin/attendance/detail","css/admin/attendance/list","css/stamp_correction_request/approve","css/stamp_correction_request/list","css/auth/verify-email","css/auth/register","css/auth/login"], () => (__webpack_require__("./resources/css/admin/attendance/detail.css")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/attendance/detail","css/attendance/index","css/attendance/list","css/layouts/header","css/sanitize","css/admin/staff/list","css/admin/attendance/detail","css/admin/attendance/list","css/stamp_correction_request/approve","css/stamp_correction_request/list","css/auth/verify-email","css/auth/register","css/auth/login"], () => (__webpack_require__("./resources/css/admin/staff/list.css")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()
