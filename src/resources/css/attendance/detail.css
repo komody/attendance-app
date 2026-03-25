@@ -1,7 +1,7 @@
 .attendance-detail {
   min-height: calc(100vh - 80px);
   padding: 32px 24px;
-  background-color: #F0EFF2;
+  background-color: #f0eff2;
 }
 
 .attendance-detail-container {
@@ -77,7 +77,6 @@
   margin-left: 150px;
 }
 
-
 .attendance-detail-time-inputs {
   display: inline-flex;
   align-items: center;
@@ -114,7 +113,7 @@
   font-size: 14px;
   font-weight: 700;
 }
-.attendance-detail-input[type="time"]::-webkit-calendar-picker-indicator {
+.attendance-detail-input[type='time']::-webkit-calendar-picker-indicator {
   display: none;
 }
 
