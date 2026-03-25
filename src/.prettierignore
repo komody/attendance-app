@@ -1,0 +1,8 @@
+# Laravel（src ディレクトリからの相対パス）
+public/
+vendor/
+node_modules/
+
+# ビルド成果物
+*.min.js
+*.min.css
