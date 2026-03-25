@@ -60,7 +60,13 @@
                                     @enderror
                                 </div>
                                 @else
-                                {{ $clockIn && $clockOut ? "{$clockIn} ~ {$clockOut}" : ($clockIn ?? '-') }}
+                                @if($clockIn && $clockOut)
+                                <span class="attendance-detail-time-start">{{ $clockIn }}</span>
+                                <span class="attendance-detail-time-separator">~</span>
+                                <span class="attendance-detail-time-end">{{ $clockOut }}</span>
+                                @else
+                                {{ $clockIn ?? '-' }}
+                                @endif
                                 @endif
                             </dd>
                         </div>
@@ -84,7 +90,13 @@
                                     @enderror
                                 </div>
                                 @else
-                                {{ ($break['start'] ?? '') && ($break['end'] ?? '') ? ($break['start'] . ' ~ ' . $break['end']) : '-' }}
+                                @if(($break['start'] ?? '') && ($break['end'] ?? ''))
+                                <span class="attendance-detail-time-start">{{ $break['start'] }}</span>
+                                <span class="attendance-detail-time-separator">~</span>
+                                <span class="attendance-detail-time-end">{{ $break['end'] }}</span>
+                                @else
+                                -
+                                @endif
                                 @endif
                             </dd>
                         </div>

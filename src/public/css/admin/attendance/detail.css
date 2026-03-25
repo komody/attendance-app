@@ -1,7 +1,7 @@
 .attendance-detail {
   min-height: calc(100vh - 80px);
   padding: 32px 24px;
-  background-color: #F0EFF2;
+  background-color: #f0eff2;
 }
 
 .attendance-detail-container {
@@ -46,7 +46,7 @@
 .attendance-detail-row {
   display: flex;
   align-items: center;
-  padding: 16px 60px;
+  padding: 36px 60px;
   border-bottom: 2px solid #e1e1e1;
   margin: 0;
 }
@@ -73,26 +73,33 @@
   text-align: left;
 }
 
-.attendance-detail-label-name {
-  margin-left: 20px;
-}
-
-.attendance-detail-date-year {
-  margin-left: 20px;
-}
-
 .attendance-detail-date-month {
   margin-left: 150px;
 }
 
-
 .attendance-detail-time-inputs {
   display: inline-flex;
   align-items: center;
-  gap: 50px;
+  gap: 80px;
+}
+
+.attendance-detail-value:has(.attendance-detail-time-start) {
+  display: inline-flex;
+  align-items: center;
+  gap: 80px;
+}
+
+.attendance-detail-time-start {
+  font-size: 16px;
+  font-weight: 700;
 }
 
 .attendance-detail-time-separator {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.attendance-detail-time-end {
   font-size: 16px;
   font-weight: 700;
 }
@@ -106,7 +113,7 @@
   font-size: 14px;
   font-weight: 700;
 }
-.attendance-detail-input[type="time"]::-webkit-calendar-picker-indicator {
+.attendance-detail-input[type='time']::-webkit-calendar-picker-indicator {
   display: none;
 }
 
@@ -187,3 +194,4 @@
   color: #c00 !important;
   font-weight: 400;
 }
+
