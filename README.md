@@ -64,8 +64,6 @@ docker compose exec php php artisan db:seed
 
 ### フロントエンド依存関係のインストール
 
-PHP コンテナに Node.js が含まれていないため、**ホストマシン**で `src` ディレクトリに移動して実行してください。
-
 ```bash
 cd src
 npm install
@@ -105,6 +103,8 @@ docker compose exec php php artisan test
 ```
 
 ## テストユーザー（ログイン用）
+
+**注意:** 同じ端末とブラウザの場合一般ユーザーか管理者どちらか一方でログインすると、もう一方のアカウントはログアウトされます（同時ログイン不可）。
 
 ### 一般ユーザー
 
