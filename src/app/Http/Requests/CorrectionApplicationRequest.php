@@ -24,7 +24,7 @@ class CorrectionApplicationRequest extends FormRequest
         return [
             'corrected_clock_in_time' => 'required|date_format:H:i',
             'corrected_clock_out_time' => 'required|date_format:H:i',
-            'remarks' => 'required|string|max:1000',
+            'remarks' => 'required|string|max:255',
             'breaks' => 'nullable|array',
             'breaks.*.break_id' => 'nullable|exists:breaks,id',
             'breaks.*.corrected_break_start' => 'required_with:breaks.*.break_id|nullable|date_format:H:i',

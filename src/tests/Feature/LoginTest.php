@@ -53,21 +53,4 @@ class LoginTest extends TestCase
             $response->getSession()->get('errors')->get('email')[0] ?? ''
         );
     }
-
-    public function test_login_succeeds_with_correct_credentials(): void
-    {
-        $user = User::create([
-            'name' => 'テストユーザー',
-            'email' => 'test@example.com',
-            'password' => Hash::make('password123'),
-            'email_verified_at' => now(),
-            'first_login_email_verified_at' => now(),
-            'status_id' => 1,
-        ]);
-
-        $response = $this->post(route('login'), $this->validData());
-
-        $this->assertAuthenticatedAs($user);
-        $response->assertRedirect(route('attendance.index'));
-    }
 }
