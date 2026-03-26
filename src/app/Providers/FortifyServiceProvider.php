@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
-use Laravel\Fortify\Features;
 use Laravel\Fortify\Fortify;
 use App\Notifications\VerifyEmail;
 

@@ -84,7 +84,7 @@
 .attendance-list-empty {
   text-align: center;
   color: #999;
-  padding: 24px !important;
+  padding: 24px;
 }
 
 .attendance-list-csv-wrap {

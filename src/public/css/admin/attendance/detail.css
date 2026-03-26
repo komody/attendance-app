@@ -191,7 +191,7 @@
 .attendance-detail-field-error {
   margin: 0;
   font-size: 12px;
-  color: #c00 !important;
+  color: #c00;
   font-weight: 400;
 }
 
