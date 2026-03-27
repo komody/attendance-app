@@ -26,7 +26,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/attendance/list', fn () => redirect()->route('attendance.list', ['year' => now()->year, 'month' => now()->month]));
     Route::get('/attendance/list/{year}/{month}', [App\Http\Controllers\AttendanceListController::class, 'index'])->name('attendance.list');
     Route::get('/attendance/detail/{year}/{month}/{day}', [App\Http\Controllers\AttendanceDetailController::class, 'showByDate'])->name('attendance.detail.date');
-    Route::get('/attendance/{id}', [App\Http\Controllers\AttendanceDetailController::class, 'show'])->name('attendance.detail');
+    Route::get('/attendance/detail/{id}', [App\Http\Controllers\AttendanceDetailController::class, 'show'])->name('attendance.detail');
     Route::post('/attendance/correction', [App\Http\Controllers\AttendanceDetailController::class, 'storeCorrection'])->name('attendance.correction.store');
     Route::post('/attendance/clock-in', [App\Http\Controllers\AttendanceController::class, 'clockIn'])->name('attendance.clock-in');
     Route::post('/attendance/clock-out', [App\Http\Controllers\AttendanceController::class, 'clockOut'])->name('attendance.clock-out');
@@ -50,13 +50,13 @@ Route::middleware('auth.admin')->group(function () {
 Route::prefix('admin')->name('admin.')->middleware('auth.admin')->group(function () {
     Route::get('/attendance/list', [App\Http\Controllers\Admin\AttendanceListController::class, 'index'])->name('attendance.list');
     Route::get('/attendance/list/{year}/{month}/{day}', [App\Http\Controllers\Admin\AttendanceListController::class, 'index'])->name('attendance.list.date');
-    Route::get('/attendance/detail/{id}', [App\Http\Controllers\Admin\AttendanceDetailController::class, 'show'])->name('attendance.detail');
-    Route::post('/attendance/detail/{id}', [App\Http\Controllers\Admin\AttendanceDetailController::class, 'update'])->name('attendance.detail.update');
     Route::post('/attendance/correction/approve/{id}', [App\Http\Controllers\Admin\AttendanceDetailController::class, 'approveCorrection'])->name('attendance.correction.approve');
     Route::get('/attendance/staff/{id}/csv/{year}/{month}', [App\Http\Controllers\Admin\StaffAttendanceController::class, 'csv'])->name('attendance.staff.csv.date');
     Route::get('/attendance/staff/{id}/csv', [App\Http\Controllers\Admin\StaffAttendanceController::class, 'csv'])->name('attendance.staff.csv');
     Route::get('/attendance/staff/{id}/{year}/{month}', [App\Http\Controllers\Admin\StaffAttendanceController::class, 'index'])->name('attendance.staff.date');
     Route::get('/attendance/staff/{id}', [App\Http\Controllers\Admin\StaffAttendanceController::class, 'index'])->name('attendance.staff');
+    Route::get('/attendance/{id}', [App\Http\Controllers\Admin\AttendanceDetailController::class, 'show'])->name('attendance.detail');
+    Route::post('/attendance/{id}', [App\Http\Controllers\Admin\AttendanceDetailController::class, 'update'])->name('attendance.detail.update');
     Route::get('/staff/list', [App\Http\Controllers\Admin\StaffListController::class, 'index'])->name('staff.list');
 });
 
