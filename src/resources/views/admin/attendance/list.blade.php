@@ -20,7 +20,7 @@
             <nav class="attendance-list-month-nav">
                 <a href="{{ route('admin.attendance.list.date', ['year' => $prevYear, 'month' => $prevMonth, 'day' => $prevDay]) }}" class="attendance-list-month-link">←前日</a>
                 <span class="attendance-list-month-display">
-                    <span class="attendance-list-month-icon">📅</span>
+                    <img src="{{ asset('storage/layouts/calendar_icon.svg') }}" alt="" class="attendance-list-month-icon">
                     {{ $date->format('Y/m/d') }}
                 </span>
                 <a href="{{ route('admin.attendance.list.date', ['year' => $nextYear, 'month' => $nextMonth, 'day' => $nextDay]) }}" class="attendance-list-month-link">翌日→</a>
@@ -46,9 +46,9 @@
                         <td>{{ $row['break_minutes'] > 0 ? floor($row['break_minutes'] / 60) . ':' . str_pad($row['break_minutes'] % 60, 2, '0', STR_PAD_LEFT) : '' }}</td>
                         <td>
                             @if($row['work_minutes'] !== null)
-                                {{ floor($row['work_minutes'] / 60) . ':' . str_pad($row['work_minutes'] % 60, 2, '0', STR_PAD_LEFT) }}
+                            {{ floor($row['work_minutes'] / 60) . ':' . str_pad($row['work_minutes'] % 60, 2, '0', STR_PAD_LEFT) }}
                             @else
-                                {{ '' }}
+                            {{ '' }}
                             @endif
                         </td>
                         <td>
