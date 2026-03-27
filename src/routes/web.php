@@ -65,7 +65,7 @@ Route::post('/logout', function (Request $request) {
     Auth::logout();
     $request->session()->invalidate();
     $request->session()->regenerateToken();
-    return redirect('/');
+    return redirect('/login');
 })->middleware('auth')->name('logout');
 
 // メール認証誘導画面
