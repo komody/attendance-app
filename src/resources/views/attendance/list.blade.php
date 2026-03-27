@@ -20,7 +20,7 @@
             <nav class="attendance-list-month-nav">
                 <a href="{{ route('attendance.list', ['year' => $prevYear, 'month' => $prevMonth]) }}" class="attendance-list-month-link">←前月</a>
                 <span class="attendance-list-month-display">
-                    <span class="attendance-list-month-icon">📅</span>
+                    <img src="{{ asset('storage/layouts/calendar_icon.svg') }}" alt="" class="attendance-list-month-icon">
                     {{ sprintf('%d/%02d', $currentYear, $currentMonth) }}
                 </span>
                 <a href="{{ route('attendance.list', ['year' => $nextYear, 'month' => $nextMonth]) }}" class="attendance-list-month-link">翌月→</a>
@@ -47,16 +47,16 @@
                         <td>{{ $row['break_minutes'] > 0 ? floor($row['break_minutes'] / 60) . ':' . str_pad($row['break_minutes'] % 60, 2, '0', STR_PAD_LEFT) : '' }}</td>
                         <td>
                             @if($row['work_minutes'] !== null)
-                                {{ floor($row['work_minutes'] / 60) . ':' . str_pad($row['work_minutes'] % 60, 2, '0', STR_PAD_LEFT) }}
+                            {{ floor($row['work_minutes'] / 60) . ':' . str_pad($row['work_minutes'] % 60, 2, '0', STR_PAD_LEFT) }}
                             @else
-                                {{ '' }}
+                            {{ '' }}
                             @endif
                         </td>
                         <td>
                             @if($row['attendance'])
-                                <a href="{{ route('attendance.detail', $row['attendance']->id) }}" class="attendance-list-detail-link">詳細</a>
+                            <a href="{{ route('attendance.detail', $row['attendance']->id) }}" class="attendance-list-detail-link">詳細</a>
                             @else
-                                <a href="{{ route('attendance.detail.date', ['year' => $row['date']->year, 'month' => $row['date']->month, 'day' => $row['date']->day]) }}" class="attendance-list-detail-link">詳細</a>
+                            <a href="{{ route('attendance.detail.date', ['year' => $row['date']->year, 'month' => $row['date']->month, 'day' => $row['date']->day]) }}" class="attendance-list-detail-link">詳細</a>
                             @endif
                         </td>
                     </tr>

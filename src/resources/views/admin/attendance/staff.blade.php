@@ -20,7 +20,7 @@
             <nav class="attendance-list-month-nav">
                 <a href="{{ route('admin.attendance.staff.date', ['id' => $user->id, 'year' => $prevYear, 'month' => $prevMonth]) }}" class="attendance-list-month-link">←前月</a>
                 <span class="attendance-list-month-display">
-                    <span class="attendance-list-month-icon">📅</span>
+                    <img src="{{ asset('storage/layouts/calendar_icon.svg') }}" alt="" class="attendance-list-month-icon">
                     {{ sprintf('%d/%02d', $currentYear, $currentMonth) }}
                 </span>
                 <a href="{{ route('admin.attendance.staff.date', ['id' => $user->id, 'year' => $nextYear, 'month' => $nextMonth]) }}" class="attendance-list-month-link">翌月→</a>
